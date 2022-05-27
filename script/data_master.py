@@ -9,6 +9,8 @@ csv_files = glob.glob(path + "/*.csv")
 df_list = (pd.read_csv(file) for file in csv_files)
 
 big_df = pd.concat(df_list, ignore_index=True)
+big_df["Tanggal"] = pd.to_datetime(big_df["Tanggal"])
+big_df.sort_values(by="Tanggal", inplace=True)
 
 big_df.sort_values(by=["provinsi (plot_tk_kab)",
                    "Kabupaten/ Kota"], inplace=True)
