@@ -37,4 +37,5 @@ final.columns.tolist()
 final_regencies = final[["name", "bps_regency_id"]]
 final_regencies["bps_province_id"] = final_regencies["bps_regency_id"].astype(
     str).str[0:2]
+final_regencies = final_regencies.drop_duplicates()
 final_regencies.to_csv("kode_wilayah/kode_wilayah.csv", index=False)
