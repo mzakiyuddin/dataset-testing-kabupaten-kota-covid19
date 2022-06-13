@@ -13,7 +13,7 @@ df_list = (pd.read_csv(file) for file in csv_files)
 # Read All File
 big_df = pd.concat(df_list, ignore_index=True)
 
-big_df["Tanggal"] = pd.to_datetime(big_df["Tanggal"])
+big_df["Tanggal"] = pd.to_datetime(big_df["Tanggal"], format='%d/%m/%Y')
 
 # Sort by date, province, kab/kota
 big_df.sort_values(by="Tanggal", inplace=True)
