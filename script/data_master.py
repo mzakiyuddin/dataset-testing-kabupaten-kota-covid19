@@ -1,5 +1,6 @@
 # https://sparkbyexamples.com/pandas/pandas-read-multiple-csv-files/
 
+
 import pandas as pd
 import glob
 
@@ -13,6 +14,7 @@ df_list = (pd.read_csv(file) for file in csv_files)
 # Read All File
 big_df = pd.concat(df_list, ignore_index=True)
 
+# Change date to datetime format
 big_df["Tanggal"] = pd.to_datetime(big_df["Tanggal"], format='%d/%m/%Y')
 
 # Sort by date, province, kab/kota
