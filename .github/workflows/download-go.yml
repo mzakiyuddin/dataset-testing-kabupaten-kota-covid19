@@ -1,0 +1,17 @@
+name: Isi presensi
+
+on: Push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo content
+        uses: actions/checkout@v2
+
+      - name: Run script
+        id: runscript
+        run: |
+          ./script/download_data
+          ls
