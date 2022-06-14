@@ -14,4 +14,4 @@ jobs:
         id: runscript
         run: |
           ./script/download_data
-          ls
+          ls *
