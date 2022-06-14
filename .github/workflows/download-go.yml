@@ -1,6 +1,6 @@
 name: Isi presensi
 
-on: Push
+on: push
 
 jobs:
   build:
