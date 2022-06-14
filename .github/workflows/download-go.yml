@@ -1,4 +1,4 @@
-name: Isi presensi
+name: Download data
 
 on: push
 
@@ -13,5 +13,5 @@ jobs:
       - name: Run script
         id: runscript
         run: |
-          ./script/download_data
+          ./script/download_data --rod=show
           ls *
