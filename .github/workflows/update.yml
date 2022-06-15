@@ -1,8 +1,9 @@
 name: Daily Update
 
 on:
-  schedule:
-    - cron: "0 1 * * *" #run every at 01:00:00s UTC / 08.00 GMT +7 / 09.00 GMT +8
+  push
+  # schedule:
+  #   - cron: "0 1 * * *" #run every at 01:00:00s UTC / 08.00 GMT +7 / 09.00 GMT +8
 
 jobs:
   build:
@@ -12,6 +13,11 @@ jobs:
       - name: Checkout repo content
         uses: actions/checkout@v2
 
+      - name: Run script download data to temp
+        id: runscript
+        run: |
+          ./script/download_data
+
       - name: Setup python
         uses: actions/setup-python@v2
         with:
@@ -20,9 +26,8 @@ jobs:
       - name: Install dependencies
         run: |
           pip install pandas
-          pip install TableauScraper
 
-      - name: Execute Script
+      - name: Run script extract data
         run: |
           python script/data_periode.py
           echo "data_periode.py Done"
