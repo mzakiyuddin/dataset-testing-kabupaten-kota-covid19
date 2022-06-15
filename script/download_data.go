@@ -5,7 +5,6 @@ import (
 	"time"
 
 	"github.com/go-rod/rod"
-	"github.com/go-rod/rod/lib/proto"
 	"github.com/go-rod/rod/lib/utils"
 )
 
@@ -32,18 +31,9 @@ func main() {
 
 	// Click download
 	fmt.Println("Click download final...")
+	wait := page.Browser().MustWaitDownload()
+
 	page.MustElement("#export-crosstab-options-dialog-Dialog-BodyWrapper-Dialog-Body-Id > div > div.fdr6v0d > button").MustClick()
-	wait := page.MustWaitRequestIdle()
-	wait()
+	_ = utils.OutputFile("data/temp/temp.xlsx", wait())
 
-	list, err := proto.PageGetResourceTree{}.Call(page)
-	utils.E(err)
-
-	data, err := page.GetResource(list.FrameTree.Frame.URL)
-	utils.E(err)
-
-	utils.E(utils.OutputFile("my.xlsx", data))
-
-	fmt.Println("Waiting 5 second...")
-	time.Sleep(8 * time.Second)
 }
