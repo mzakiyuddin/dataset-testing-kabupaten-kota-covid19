@@ -10,18 +10,18 @@ import (
 
 func main() {
 	fmt.Println("Open link...")
-	linkDashboard := "https://dashboard.kemkes.go.id/views/asesmenkabkotavaksinKTP2/Dtesting_kabkota"
+	linkDashboard := "https://dashboard.kemkes.go.id/views/asesmenkabkotavaksinKTP2/Dtesting_kabkota?%3Aembed=y&%3AisGuestRedirectFromVizportal=y"
 	page := rod.New().MustConnect().MustPage(linkDashboard)
 	time.Sleep(3 * time.Second)
 
 	// Click Download Button
 	fmt.Println("Click download first...")
-	page.MustWaitLoad().MustElement("#download-ToolbarButton").MustClick()
+	page.MustWaitLoad().MustElement("#download").MustClick()
 	time.Sleep(3 * time.Second)
 
 	// Click Crosstab
 	fmt.Println("Click crosstab...")
-	page.MustElement(`#DownloadDialog-Dialog-Body-Id > div > fieldset > button:nth-child(4)`).MustClick()
+	page.MustElementR(`label`, "Crosstab").MustClick()
 	time.Sleep(3 * time.Second)
 
 	// Click Testing
